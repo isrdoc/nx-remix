@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/lib/prisma-db.d.ts"],"sourcesContent":["import { PrismaClient } from '@prisma/client';\ndeclare let db: PrismaClient;\ndeclare global {\n    var __db: PrismaClient | undefined;\n}\nexport { db };\n"],"names":["db"],"mappings":"AAAA;;QAKSA,EAAE,GAAFA,EAAE"}

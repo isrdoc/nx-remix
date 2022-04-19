@@ -1,0 +1,11 @@
+{
+  "name": "@nx-remix/ui-divider",
+  "version": "0.0.1",
+  "main": "./index.umd.js",
+  "typings": "./index.d.ts",
+  "module": "./index.esm.js",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^17.0.2"
+  }
+}

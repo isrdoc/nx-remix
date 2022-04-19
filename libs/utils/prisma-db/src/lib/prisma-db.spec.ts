@@ -1,7 +1,7 @@
-import { prismaDb } from './prisma-db'
+import { db } from './prisma-db'
 
 describe('prismaDb', () => {
   it('should work', () => {
-    expect(prismaDb()).toEqual('prisma-db')
+    expect(db).toEqual('prisma-db')
   })
 })

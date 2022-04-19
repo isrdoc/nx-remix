@@ -1,0 +1,11 @@
+{
+  "name": "@nx-remix/utils-prisma-db",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts",
+  "dependencies": {},
+  "peerDependencies": {
+    "@prisma/client": "^3.12.0"
+  }
+}

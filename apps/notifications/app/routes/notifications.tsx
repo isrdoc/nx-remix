@@ -4,13 +4,13 @@ import { useLoaderData, Form, useSubmit, useTransition } from '@remix-run/react'
 
 import { Divider } from '@nx-remix/ui-divider'
 
-import { db } from './notifications.server'
+// import { db } from './notifications.server'
 import type { Notification } from './notifications.types'
 import rootStyles from '../root.styles'
 
 // Use to demo call to express service with notifications
 // Run: yarn nx serve apps/notifications-service
-// const API = 'http://localhost:5001'
+const API = 'http://localhost:3333'
 
 type LoaderData = { notifications: Notification[] }
 
@@ -23,15 +23,15 @@ export const loader: LoaderFunction = async ({ request }) => {
   // await new Promise((resolve) => setTimeout(resolve, 2000))
 
   // Use to demo call to express service with notifications
-  // const searchResponse = await fetch(`${API}/search?type=${search.get('type') || ''}`)
-  // const notifications = await searchResponse.json()
+  const searchResponse = await fetch(`${API}/search?type=${typeSearchQuery || ''}`)
+  const notifications = await searchResponse.json()
 
-  const allNotifications = (await db.notification.findMany({})) as Notification[]
-  let filteredNotifications = !typeSearchQuery
-    ? ([] as Notification[])
-    : allNotifications.filter((notification) => notification.type.includes(typeSearchQuery.toUpperCase()))
+  // const allNotifications = (await db.notification.findMany({})) as Notification[]
+  // let filteredNotifications = !typeSearchQuery
+  //   ? ([] as Notification[])
+  //   : allNotifications.filter((notification) => notification.type.includes(typeSearchQuery.toUpperCase()))
 
-  const notifications = typeSearchQuery ? filteredNotifications : allNotifications
+  // const notifications = typeSearchQuery ? filteredNotifications : allNotifications
   const data: LoaderData = { notifications }
   return json(data)
 }

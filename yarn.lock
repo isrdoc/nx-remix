@@ -1713,7 +1713,7 @@
     yargs "^17.4.0"
     yargs-parser "21.0.1"
 
-"@nx-remix/divider@./libs/divider/dist":
+"@nx-remix/ui-divider@./libs/ui/divider/dist":
   version "0.0.1"
 
 "@oclif/command@^1", "@oclif/command@^1.8.15":

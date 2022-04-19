@@ -1,7 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "divider": "libs/divider",
-    "notifications": "apps/notifications"
+    "notifications": "apps/notifications",
+    "ui-divider": "libs/ui/divider"
   }
 }

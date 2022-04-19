@@ -24,6 +24,9 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# environment
+.env
+
 # misc
 /.sass-cache
 /connect.lock
@@ -41,4 +44,3 @@ Thumbs.db
 # Remix files
 apps/**/build
 apps/**/.cache
-  

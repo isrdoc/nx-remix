@@ -1,32 +1,13 @@
-import {
-  Link,
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useCatch,
-} from 'remix';
-import type { LinksFunction } from 'remix';
+import { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix'
+import type { LinksFunction } from 'remix'
 
-import globalStylesUrl from '~/styles/global.css';
-import darkStylesUrl from '~/styles/dark.css';
+import tailwind from './tailwind.css'
+import rootStyles from './root.styles'
 
-// https://remix.run/api/app#links
 export let links: LinksFunction = () => {
-  return [
-    { rel: 'stylesheet', href: globalStylesUrl },
-    {
-      rel: 'stylesheet',
-      href: darkStylesUrl,
-      media: '(prefers-color-scheme: dark)',
-    },
-  ];
-};
+  return [{ rel: 'stylesheet', href: tailwind }]
+}
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
 export default function App() {
   return (
     <Document>
@@ -34,12 +15,11 @@ export default function App() {
         <Outlet />
       </Layout>
     </Document>
-  );
+  )
 }
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
+  console.error(error)
   return (
     <Document title="Error!">
       <Layout>
@@ -47,38 +27,27 @@ export function ErrorBoundary({ error }: { error: Error }) {
           <h1>There was an error</h1>
           <p>{error.message}</p>
           <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
+          <p>Hey, developer, you should replace this with what you want your users to see.</p>
         </div>
       </Layout>
     </Document>
-  );
+  )
 }
 
-// https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
-  let caught = useCatch();
+  let caught = useCatch()
 
-  let message;
+  let message
   switch (caught.status) {
     case 401:
-      message = (
-        <p>
-          Oops! Looks like you tried to visit a page that you do not have access
-          to.
-        </p>
-      );
-      break;
+      message = <p>Oops! Looks like you tried to visit a page that you do not have access to.</p>
+      break
     case 404:
-      message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
-      );
-      break;
+      message = <p>Oops! Looks like you tried to visit a page that does not exist.</p>
+      break
 
     default:
-      throw new Error(caught.data || caught.statusText);
+      throw new Error(caught.data || caught.statusText)
   }
 
   return (
@@ -90,16 +59,10 @@ export function CatchBoundary() {
         {message}
       </Layout>
     </Document>
-  );
+  )
 }
 
-function Document({
-  children,
-  title,
-}: {
-  children: React.ReactNode;
-  title?: string;
-}) {
+function Document({ children, title }: { children: React.ReactNode; title?: string }) {
   return (
     <html lang="en">
       <head>
@@ -109,49 +72,44 @@ function Document({
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={classes['app__body']}>
         {children}
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
-  );
+  )
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="remix-app">
-      <header className="remix-app__header">
-        <div className="container remix-app__header-content">
-          <Link to="/" title="Remix" className="remix-app__header-home-link">
-            <RemixLogo />
-          </Link>
-          <nav aria-label="Main navigation" className="remix-app__header-nav">
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <a href="https://remix.run/docs">Remix Docs</a>
-              </li>
-              <li>
-                <a href="https://github.com/remix-run/remix">GitHub</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+    <div className={classes['app__container']}>
+      <header className={classes['app__header']}>
+        <Link to="/" title="Remix" className={classes['app__header-logo']}>
+          <RemixLogo />
+        </Link>
+
+        <div className={classes['component-divider']} />
+
+        <nav aria-label="Main navigation" className={classes['app__header-navigation']}>
+          <ul className={classes['app__header-navigation-list']}>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+
+            <li>
+              <a href="/notifications">Notifications</a>
+            </li>
+          </ul>
+        </nav>
       </header>
+
       <div className="remix-app__main">
         <div className="container remix-app__main-content">{children}</div>
       </div>
-      <footer className="remix-app__footer">
-        <div className="container remix-app__footer-content">
-          <p>&copy; You!</p>
-        </div>
-      </footer>
     </div>
-  );
+  )
 }
 
 function RemixLogo() {
@@ -174,5 +132,33 @@ function RemixLogo() {
       <path d="M478.436 47.104V161.28H519.908V47.104H478.436ZM478.18 36.352H520.164V0H478.18V36.352Z" />
       <path d="M654.54 47.1035H611.788L592.332 74.2395L573.388 47.1035H527.564L568.78 103.168L523.98 161.28H566.732L589.516 130.304L612.3 161.28H658.124L613.068 101.376L654.54 47.1035Z" />
     </svg>
-  );
+  )
+}
+
+const header_py = 'py-4'
+const header_text = 'text-lg'
+
+const classes = {
+  ['app__body']: `app__body
+  text-gray-800`,
+
+  ['component-divider']: `component-divider m-4`,
+
+  ['app__container']: `app__container`,
+
+  ['app__header']: `app__header
+  flex items-center
+  ${rootStyles['page-px']}
+  bg-gray-200`,
+
+  ['app__header-logo']: `app__header-logo
+  ${header_py}`,
+
+  ['app__header-navigation']: `app__header-navigation
+  ${header_py}`,
+
+  ['app__header-navigation-list']: `app__header-navigation-list
+  flex
+  ${header_text}
+  gap-x-4`,
 }

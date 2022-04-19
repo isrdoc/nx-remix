@@ -1,0 +1,11 @@
+model Notification {
+  id   Int              @id
+  type NotificationType
+  data Json
+}
+
+enum NotificationType {
+  TRANSACTION_RECEIVED
+  TRANSACTION_SENT
+  ACCOUNT_CREATED
+}

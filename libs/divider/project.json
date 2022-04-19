@@ -6,17 +6,13 @@
   "targets": {
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "libs/divider/dist",
         "tsConfig": "libs/divider/tsconfig.lib.json",
         "project": "libs/divider/package.json",
         "entryFile": "libs/divider/src/index.ts",
-        "external": [
-          "react/jsx-runtime"
-        ],
+        "external": ["react/jsx-runtime"],
         "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
         "compiler": "babel",
         "assets": [
@@ -26,27 +22,19 @@
             "output": "."
           }
         ],
-        "format": [
-          "cjs"
-        ]
+        "format": ["umd", "esm"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/divider/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/divider/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/divider"
-      ],
+      "outputs": ["coverage/libs/divider"],
       "options": {
         "jestConfig": "libs/divider/jest.config.js",
         "passWithNoTests": true

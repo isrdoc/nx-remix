@@ -1,0 +1,25 @@
+//******** AUTO GENERATED FILE, DO NOT EDIT.  *********
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Notification {
+  id   Int              @id
+  type NotificationType
+  data Json
+}
+
+enum NotificationType {
+  TRANSACTION_RECEIVED
+  TRANSACTION_SENT
+  ACCOUNT_CREATED
+}

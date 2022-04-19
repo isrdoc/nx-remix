@@ -4,28 +4,38 @@
   "description": "",
   "license": "",
   "version": "0.0.0",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
-    "build": "npx remix build",
-    "dev": "npx remix dev",
+    "build": "run-s build:*",
+    "build:css": "yarn run tailwind:generate -- --minify",
+    "build:remix": "npx remix build",
+    "dev": "run-p dev:*",
+    "dev:css": "yarn run tailwind:generate --watch",
+    "dev:remix": "npx remix dev",
     "postinstall": "npx remix setup node",
-    "start": "npx remix-serve build"
+    "prisma:schema": "yarn run prisma:merge && yarn run prisma:generate",
+    "prisma:generate": "npx prisma generate",
+    "prisma:merge": "yarn run prisma-merge -b 'prisma/base.prisma' -o 'prisma/schema.prisma' -s '**/*.prisma'",
+    "prisma:seed": "yarn run prisma:seed:notifications",
+    "prisma:seed:notifications": "ts-node app/routes/notifications.seed.ts",
+    "start": "npx remix-serve build",
+    "tailwind:generate": "npx tailwindcss -i ./tailwind/base.css -o ./app/tailwind.css"
   },
   "dependencies": {
+    "@nx-remix/divider": "./libs/divider/dist",
     "@remix-run/react": "1.3.4",
+    "@remix-run/serve": "1.3.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix": "1.3.4",
-    "@remix-run/serve": "1.3.4",
-    "@nx-remix/divider": "./libs/divider/dist"
+    "remix": "1.3.4"
   },
   "devDependencies": {
     "@remix-run/dev": "1.3.4",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "typescript": "^4.1.2"
-  },
-  "engines": {
-    "node": ">=14"
-  },
-  "sideEffects": false
+  }
 }

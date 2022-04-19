@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@nx-remix/ui-divider": "./libs/ui/divider/dist",
+    "@nx-remix/utils-prisma-db": "./libs/utils/prisma-db/dist",
     "@prisma/client": "^3.12.0",
     "@remix-run/node": "^1.4.0",
     "@remix-run/react": "^1.4.0",

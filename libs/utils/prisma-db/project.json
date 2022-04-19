@@ -1,0 +1,32 @@
+{
+  "root": "libs/utils/prisma-db",
+  "sourceRoot": "libs/utils/prisma-db/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "libs/utils/prisma-db/dist",
+        "main": "libs/utils/prisma-db/src/index.ts",
+        "tsConfig": "libs/utils/prisma-db/tsconfig.lib.json",
+        "assets": ["libs/utils/prisma-db/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/utils/prisma-db/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/utils/prisma-db"],
+      "options": {
+        "jestConfig": "libs/utils/prisma-db/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

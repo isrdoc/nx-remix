@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "notifications": "apps/notifications",
-    "ui-divider": "libs/ui/divider"
+    "ui-divider": "libs/ui/divider",
+    "utils-prisma-db": "libs/utils/prisma-db"
   }
 }

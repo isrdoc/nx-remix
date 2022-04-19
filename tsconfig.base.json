@@ -15,8 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-remix/ui-divider": ["libs/ui/divider/src/index.ts"]
+      "@nx-remix/ui-divider": ["libs/ui/divider/src/index.ts"],
+      "@nx-remix/utils-prisma-db": ["libs/utils/prisma-db/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "references": [
+    {
+      "path": "libs/utils/prisma-db"
+    }
+  ]
 }
